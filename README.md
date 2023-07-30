@@ -1,0 +1,2 @@
+# kanjiADay
+Learn kanji everyday
