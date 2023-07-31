@@ -1,4 +1,7 @@
 'use client'
+//test add data
+import addData from "@/firebase/firestore/addData";
+
 import dynamic from "next/dynamic";
 import Image from 'next/image'
 import { useState, useEffect } from 'react';
@@ -10,11 +13,24 @@ const Navbar = dynamic(() => import("./components/Navbar"), {
   ssr: false,
 });
 
-
 export default function Home() {
   useEffect( () => {
+    handleForm()
     require('preline')
   }, [])
+
+  const handleForm = async () => {
+    const data = {
+      name: 'John snow',
+      house: 'Stark'
+    }
+    const { result, error } = await addData('users', 'user-id', data)
+
+    if (error) {
+      return console.log(error)
+    }
+    
+  }
   
   const [kanji, setKanji] = useState({
     kanji: '',
@@ -76,10 +92,15 @@ export default function Home() {
      <div className="grid grid-cols-8">
       <div className="side-panel col-span-3 flex flex-col align-center m-8 border-r-2 border-slate-300">
          <DateSelector />
-         <KanjiDetail kanjiData={kanji}/>
+         <KanjiDetail 
+            kanji = {kanji.kanji}
+            meanings = {kanji.meanings.join(", ")}
+            kunReadings = {kanji.kun_readings.join(", ")}
+            onReadings = {kanji.on_readings.join(", ")}
+          />
       </div>
       <div className="main-panel m-8 col-span-5">
-         <WordExamples relatedWords={relatedWords} />
+         <WordExamples words={relatedWords} />
       </div>
      </div>  
     </>

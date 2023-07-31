@@ -1,11 +1,18 @@
 import KanjiDetailField from "./KanjiDetailField"
 
-const KanjiDetail = ({kanjiData}) => {
+type KanjiDetailProps = {
+    kanji: string,
+    meanings: string,
+    kunReadings: string,
+    onReadings: string
+}
+
+const KanjiDetail = ({kanji,meanings, kunReadings, onReadings}:KanjiDetailProps) => {
 
     const kanjiDetails = {
-        'Meanings:': kanjiData.meanings.join(", "),
-        'Kun Readings: ': kanjiData.kun_readings.join(", "),
-        'On Readings: ': kanjiData.on_readings.join(", ")
+        'Meanings:': meanings,
+        'Kun Readings: ': kunReadings,
+        'On Readings: ': onReadings
     }
 
     const KanjiDetailFields = () => {
@@ -19,7 +26,7 @@ const KanjiDetail = ({kanjiData}) => {
     return ( 
         <div>
             <div className="kanji-display w-[100px] border-solid border-2 black">
-                <div className="text-8xl">{kanjiData.kanji}</div>
+                <div className="text-8xl">{kanji}</div>
             </div>
             <div className="kanji-detail-unit">
                 <KanjiDetailFields />

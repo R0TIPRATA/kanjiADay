@@ -1,14 +1,23 @@
 import WordExample from "./WordExample";
 
+type WordExamplesProps = {
+    words: any
+}
+
+type Word = {
+    variants: any,
+    meanings: any
+}
+
 const lodash = require('lodash')
-const WordExamples = ({relatedWords}) => {
+const WordExamples = ({words}:WordExamplesProps) => {
     //show the first 10 examples first
     const MAX = 10
     const wordsArr = []
     //console.log("related words length ", relatedWords.length)
-    if(relatedWords.length > 1){
+    if(words.length > 1){
         for(let i = 0; i <= 10; i++){
-            const word = relatedWords[i];
+            const word:Word = words[i];
             console.log("word",JSON.stringify(word.meanings[0].glosses))
             wordsArr.push(<WordExample 
                 written={word.variants[0].written} 

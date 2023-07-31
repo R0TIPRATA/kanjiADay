@@ -4,6 +4,7 @@ import Script from 'next/script'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { useEffect } from 'react'
+import { AuthContextProvider } from '@/context/AuthContext'
 
 const lodash = require('lodash')
 const inter = Inter({ subsets: ['latin'] })
@@ -23,9 +24,12 @@ export default function RootLayout({children,}: {children: React.ReactNode}) {
     <html lang="en">
       <head></head>
       <body className={inter.className}>
+      <AuthContextProvider>
         {children}
+      </AuthContextProvider>
       <script src="../node_modules/preline/dist/preline.js"></script>
       </body>
+
     </html>
   )
 }
