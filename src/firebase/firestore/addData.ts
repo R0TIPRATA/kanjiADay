@@ -8,12 +8,16 @@ export default async function addData(collection:any, id:any , data:any ){
     let error = null;
 
     try {
+        // console.log("collection", collection)
+        // console.log("id", id),
+        // console.log("data", data)
         result = await setDoc(doc(db, collection, id), data, {
             merge: true,
         });
+        console.log("result", result)
     } catch (e) {
         error = e;
+        console.log("error", e)
     }
-
     return { result, error };
 }
