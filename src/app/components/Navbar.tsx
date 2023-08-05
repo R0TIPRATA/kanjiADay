@@ -1,4 +1,6 @@
+import Link from 'next/link'
 const Navbar = () => {
+    const kanjiTest = "小"
     return ( 
         <header className="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-gray-800 text-sm py-4 dark:bg-white">
             <nav className="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between" aria-label="Global">
@@ -23,6 +25,9 @@ const Navbar = () => {
                     <a className="font-medium text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400" href="#">Blog</a>
                 </div>
                 </div> */}
+                <Link href="/wordbank"> Word Bank </Link>
+                <Link href= {`/kanjiPage/${kanjiTest}`}> Test </Link>
+                <Link href= {`/kanjiPage/today}`}> Test </Link>
             </nav>
 </header>
     );

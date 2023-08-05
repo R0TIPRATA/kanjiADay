@@ -5,6 +5,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { useEffect } from 'react'
 import { AuthContextProvider } from '@/context/AuthContext'
+import dynamic from 'next/dynamic'
 
 const lodash = require('lodash')
 const inter = Inter({ subsets: ['latin'] })
@@ -13,6 +14,10 @@ const inter = Inter({ subsets: ['latin'] })
 //   title: 'A Kanji A Day',
 //   description: 'Learn a new kanji everyday',
 // }
+
+const Navbar = dynamic(() => import("./components/Navbar"), {
+  ssr: false,
+});
 
 
 export default function RootLayout({children,}: {children: React.ReactNode}) {
@@ -24,6 +29,7 @@ export default function RootLayout({children,}: {children: React.ReactNode}) {
     <html lang="en">
       <head></head>
       <body className={inter.className}>
+      <Navbar />
       <AuthContextProvider>
         {children}
       </AuthContextProvider>

@@ -1,3 +1,4 @@
+import { getKanjiDetails } from "../lib/getUserKanjiData"
 import KanjiDetailField from "./KanjiDetailField"
 
 type KanjiDetailProps = {
@@ -7,7 +8,10 @@ type KanjiDetailProps = {
     onReadings: string
 }
 
-const KanjiDetail = ({kanji,meanings, kunReadings, onReadings}:KanjiDetailProps) => {
+ const KanjiDetail = ({kanji,meanings, kunReadings, onReadings}:KanjiDetailProps) => {
+// const KanjiDetail = async ({kanji}:KanjiDetailProps) => {
+    //call API to get kanjidetails
+    //const kanjiDetails = await getKanjiDetails(decodeURI(kanji))
 
     const kanjiDetails = {
         'Meanings:': meanings,

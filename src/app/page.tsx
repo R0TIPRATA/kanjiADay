@@ -1,22 +1,17 @@
-'use client'
+"use client"
 //test add data
 import { useAuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
-
-import dynamic from "next/dynamic";
-import Image from 'next/image'
 import { useState, useEffect } from 'react';
 import KanjiDetail from "./components/KanjiDetail";
 import WordExamples from "./components/WordExamples";
 import DateSelector from "./components/DateSelector";
 import getAllKanjiLearnt from "@/firebase/firestore/getAllKanjiLearnt";
-import { off } from "process";
+//import { getAllKanjiLearntSorted } from "./lib/getUserKanjiData";
 
-const Navbar = dynamic(() => import("./components/Navbar"), {
-  ssr: false,
-});
 
 export default function Home() {
+
   const user = useAuthContext()
   const router = useRouter()
   
@@ -62,6 +57,7 @@ interface KanjiCharacter {
   const [selectedDate, setSelectedDate] = useState(today.toDateString())
   const [selectedKanji, setSelectedKanji] = useState("小")
   const [kanjiList, setKanjiList] = useState<KanjiCharacter[]>([])
+  
   //For date selector:
   const [currentIndex, setCurrentIndex] = useState(0) //assume array arranged from most recent -> oldest
   const [dateLength, setDateLength] = useState(0)
@@ -82,11 +78,7 @@ interface KanjiCharacter {
     fetchKanjiDetails(selectedKanji)
     fetchWords(selectedKanji)
 
-  }, []);
-
-  // useEffect(() => {
-  //   //get new values
-  // }, [selectedDate]) //if selected date changes
+  }, [])
 
   const fetchKanjiDetails = async(selectedKanji:string) => {
     const response = await fetch(`https:kanjiapi.dev/v1/kanji/${selectedKanji}`)
@@ -138,13 +130,20 @@ interface KanjiCharacter {
     fetchKanjiDetails(kanji)
   }
 
+  
   return (
     <>
-      <Navbar />
      <div className="grid grid-cols-8">
       <div className="side-panel col-span-3 flex flex-col align-center m-8 border-r-2 border-slate-300">
          <DateSelector date={selectedDate} disablePrev={disablePrev} disableNext={disableNext} changeDate={changeDate}/>
-         <KanjiDetail 
+         {/* <KanjiDetail 
+            kanji = "蛍"
+            // kanji = {kanjiDetails.kanji}
+            // meanings = {kanjiDetails.meanings.join(", ")}
+            // kunReadings = {kanjiDetails.kun_readings.join(", ")}
+            // onReadings = {kanjiDetails.on_readings.join(", ")}
+          /> */}
+          <KanjiDetail 
             kanji = {kanjiDetails.kanji}
             meanings = {kanjiDetails.meanings.join(", ")}
             kunReadings = {kanjiDetails.kun_readings.join(", ")}
@@ -152,9 +151,26 @@ interface KanjiCharacter {
           />
       </div>
       <div className="main-panel m-8 col-span-5">
-         <WordExamples words={relatedWords} />
+         {/* <WordExamples 
+          kanji = "蛍" 
+         /> */}
+        <WordExamples words={relatedWords} />
       </div>
      </div>  
     </>
+
+/*     {allPostsData.map( ({ id, kanjiCharacter, dateLearnt} : any ) => (
+      <li>
+        <p>id: {id} </p>
+        <p>kanji: {kanjiCharacter} </p>
+        <p>date learnt: {dateLearnt}</p>
+      </li>
+    ))}  */
   )
 }
+
+// type PostsData = {
+//   id: string,
+//   kanjiCharacter: string,
+//   dateLearnt: any 
+// }
