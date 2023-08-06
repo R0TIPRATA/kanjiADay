@@ -1,7 +1,7 @@
 'use client'
-import DateSelector from "@/app/components/DateSelector";
-import KanjiDetail from "@/app/components/KanjiDetail";
-import WordExamples from "@/app/components/WordExamples";
+import DateSelector from "@/components/DateSelector";
+import KanjiDetail from "@/components/KanjiDetail";
+import WordExamples from "@/components/WordExamples";
 import type { InferGetStaticPropsType, GetStaticProps } from 'next'
 import { useState } from "react";
 

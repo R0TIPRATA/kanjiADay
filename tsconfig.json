@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/components/TopBar.jsx", "src/firebase/firestore/addAllKanji.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/TopBar.jsx", "src/firebase/firestore/addAllKanji.js"],
   "exclude": ["node_modules"]
 }

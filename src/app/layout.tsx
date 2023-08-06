@@ -6,6 +6,7 @@ import { Inter } from 'next/font/google'
 import { useEffect } from 'react'
 import { AuthContextProvider } from '@/context/AuthContext'
 import dynamic from 'next/dynamic'
+import { Dashboard } from '@material-ui/icons'
 
 const lodash = require('lodash')
 const inter = Inter({ subsets: ['latin'] })
@@ -15,7 +16,7 @@ const inter = Inter({ subsets: ['latin'] })
 //   description: 'Learn a new kanji everyday',
 // }
 
-const Navbar = dynamic(() => import("./components/Navbar"), {
+const Navbar = dynamic(() => import("../components/Navbar"), {
   ssr: false,
 });
 
@@ -31,6 +32,7 @@ export default function RootLayout({children,}: {children: React.ReactNode}) {
       <body className={inter.className}>
       <Navbar />
       <AuthContextProvider>
+        <Dashboard />
         {children}
       </AuthContextProvider>
       <script src="../node_modules/preline/dist/preline.js"></script>
