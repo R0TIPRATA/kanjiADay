@@ -5,10 +5,11 @@ type WordExampleProps = {
     written: string,
     pronounced: string,
     meanings: string,
-    favoriteInDb: boolean
+  //  favoriteInDb: boolean
 }
 
-const WordExample = ({ written, pronounced, meanings, favoriteInDb}: WordExampleProps) => {
+const WordExample = ({ written, pronounced, meanings}: WordExampleProps) => {
+    
     const handleClick = (favorite:boolean) => {
         if(favorite){
             setWordbankWord({ written, pronounced, meanings })
@@ -33,7 +34,8 @@ const WordExample = ({ written, pronounced, meanings, favoriteInDb}: WordExample
                 </div>
                 <div className='right-side-wrapper flex flex-col float-right'>
                     <div className='button-wrapper flex flex-row-reverse items-center'>
-                        <FavButton favoriteInDb={favoriteInDb} handleClick={handleClick} />
+                        {/* <FavButton handleClick={handleClick} /> */}
+                        <FavButton />
                         <span className="hidden">Added to word bank!</span>
                     </div>
                     <div className='pronounced flex flex-row-reverse'>{pronounced}</div>

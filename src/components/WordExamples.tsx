@@ -1,10 +1,9 @@
 
-//import { getWordsWithKanji } from "../lib/UserKanjiDataActions";
+import { getWordsWithKanji } from "../lib/UserKanjiDataActions";
 import WordExample from "./WordExample";
 
 type WordExamplesProps = {
-    //kanji: string
-    words: any
+    kanji: string | undefined
 }
 
 type Word = {
@@ -13,24 +12,25 @@ type Word = {
 }
 
 //const lodash = require('lodash')
-const WordExamples = ({words}:WordExamplesProps) => {
-//const WordExamples = async ({kanji}:WordExamplesProps) => {
+//const WordExamples = ({words}:WordExamplesProps) => {
+const WordExamples = async ({kanji}:WordExamplesProps) => {
     //get all wordbank words
     //const wordbankWords = await getAllWordbankWords()
-    //const words = await getWordsWithKanji(kanji)
     const wordsArr = []
-    if(words.length > 1){
-        var limit = 0
-        for(let i = 0; i <= 10; i++){
-            const word:Word = words[i]
-            //check if word written == any of wordbank words 
-            wordsArr.push(<WordExample 
-                written={word.variants[0].written} 
-                pronounced={word.variants[0].pronounced}    
-                meanings={word.meanings[0].glosses.join(", ")}
-                favoriteInDb={wordbankWords.includes(word.variants[0].written)}     
-            />)
-        }
+    if(typeof kanji !== 'undefined' ){
+        const words = await getWordsWithKanji(kanji)
+        if(words.length > 1){
+            for(let i = 0; i <= 10; i++){
+                const word:Word = words[i]
+                //check if word written == any of wordbank words 
+                wordsArr.push(<WordExample 
+                    written={word.variants[0].written} 
+                    pronounced={word.variants[0].pronounced}    
+                    meanings={word.meanings[0].glosses.join(", ")}
+                   // favoriteInDb={false}
+                />)
+            }
+        }       
     }
     return ( 
         <div>

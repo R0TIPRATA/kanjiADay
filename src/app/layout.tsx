@@ -32,7 +32,6 @@ export default function RootLayout({children,}: {children: React.ReactNode}) {
       <body className={inter.className}>
       <Navbar />
       <AuthContextProvider>
-        <Dashboard />
         {children}
       </AuthContextProvider>
       <script src="../node_modules/preline/dist/preline.js"></script>

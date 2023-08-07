@@ -5,12 +5,13 @@ import { AiOutlineStar, AiFillStar } from "react-icons/ai"
 
 type FavButtonProps = {
     handleClick : Function,
-    favoriteInDb: boolean
+   // favoriteInDb: boolean
 }
 
-const FavButton = ({handleClick, favoriteInDb}:FavButtonProps) => {
-
-    const [favorite, setFavorite] = useState(favoriteInDb)
+//const FavButton = ({handleClick, favoriteInDb}:FavButtonProps) => {
+//const FavButton = ({handleClick}:FavButtonProps) => {
+    const FavButton = () => {    
+    const [favorite, setFavorite] = useState(false)//(favoriteInDb)
 
     const getIcon = () => {
         if (!favorite){
@@ -29,7 +30,7 @@ const FavButton = ({handleClick, favoriteInDb}:FavButtonProps) => {
     <button type="button" className="w-100 py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold text-gray-800 hover:bg-gray-100 transition-all text-sm dark:text-white dark:hover:bg-gray-900 dark:hover:border-gray-900 "
     onClick={()=> 
         { 
-            handleClick(!favorite)
+            //handleClick(!favorite)
             setFavorite(!favorite)
         }
     }
