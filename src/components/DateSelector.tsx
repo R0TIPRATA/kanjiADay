@@ -4,6 +4,7 @@ import { getAllKanjiLearnt } from "@/lib/UserKanjiDataActions"
 import { updateSearchParams } from "@/utils"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai"
 
 // type DateSelectorProps = {
 //     date: string,
@@ -38,12 +39,21 @@ const DateSelector = () => {
     const [selectedDate, setSelectedDate] = useState(today.toDateString())
     const [selectedKanji, setSelectedKanji] = useState("")
     const [kanjiList, setKanjiList] = useState<KanjiCharacter[]>([])
+    const [disableNext,setDisableNext] = useState(true)
+    const [disablePrev,setDisablePrev] = useState(false)
 
     useEffect( () => {
         getLastVisit()
     }
-    
     ,[])
+
+    useEffect( () => {
+        if(kanjiList.length > 0){
+            setSelectedKanji(kanjiList[0].kanji)
+            updateParams(kanjiList[0].kanji)
+        }
+    }
+    ,[kanjiList])
 
     const getLastVisit = async() => {
         const {data, error} = await getDateLastVisited()
@@ -60,8 +70,6 @@ const DateSelector = () => {
           setDateLastVisited(data)
         }
         fetchKanjiLearnt()
-        // setSelectedKanji(kanjiList[0].kanji)
-        // updateParams(kanjiList[0].kanji)
     }
 
     const fetchKanjiLearnt = async() => {
@@ -79,16 +87,20 @@ const DateSelector = () => {
         //selector controls
         if(control === 'prev') newIndex = currentIndex + 1
         else newIndex = currentIndex - 1
+
+        console.log("current index", currentIndex)
+        console.log("control", control)
+        console.log("newIndex" , newIndex)
         
         //disabling buttons 
-        // if(newIndex === 0) setDisableNext(true)
-        // else if (newIndex === dateLength - 1 ) setDisablePrev(true)
-        // else { 
-        //   setDisableNext(false)
-        //   setDisablePrev(false)
-        // }  
+        if(newIndex === 0) setDisableNext(true)
+        else if (newIndex === dateLength - 1 ) setDisablePrev(true)
+        else { 
+          setDisableNext(false)
+          setDisablePrev(false)
+        }  
+
         //setting new date
-        
         setCurrentIndex(newIndex)
         const date = kanjiList[newIndex].dateLearnt.toDate().toDateString()
         const kanji = kanjiList[newIndex].kanji
@@ -96,24 +108,27 @@ const DateSelector = () => {
         console.log("test k: ", kanji)
         setSelectedDate(date)
         setSelectedKanji(kanji)
-        //fetchWords(kanji)
-        //fetchKanjiDetails(kanji)
+        updateParams(kanji)
     }
     
+    const makeDisabled = () => {
+        
+    }
+
     return(
         <div className='date-selector flex justify-items-center items-center'>
-        <button type="button" className={`mx-2 inline-flex flex-shrink-0 justify-center items-center gap-2 h-[2.375rem] w-[2.375rem] rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm  dark:focus:ring-offset-gray-800 
-        `}
-        //${ disablePrev && makeDisabled()} `}
-        // disabled = {disablePrev}
+        <button type="button" className={`mx-2 inline-flex flex-shrink-0 justify-center items-center gap-2 h-[2.375rem] 
+        w-[2.375rem] rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2
+         focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm  dark:focus:ring-offset-gray-800 ${ disablePrev && makeDisabled()}`}
+        disabled = {disablePrev}
         onClick={ e => {
             e.preventDefault()
             changeDate('prev')
-            updateParams(selectedKanji)
+            //updateParams(selectedKanji)
             }
         }
         >
-            {/* <ChevronLeft /> */} Left
+            <AiOutlineLeft />
         </button>
         <div className='text-2xl font-semibold my-8'>
             <p>{selectedDate}</p>
@@ -121,15 +136,15 @@ const DateSelector = () => {
         <button type="button" className={`mx-2 inline-flex flex-shrink-0 justify-center items-center gap-2 h-[2.375rem] w-[2.375rem] rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm  dark:focus:ring-offset-gray-800 
         `}
         //${ disableNext && makeDisabled()} `}
-        //  disabled = {disableNext}
+         disabled = {disableNext}
          onClick={ e => {
                 e.preventDefault()
                 changeDate('next')
-                updateParams(selectedKanji)
+                //updateParams(selectedKanji)
             }
         }
         >
-             {/* <ChevronRight/>  */} Right
+            <AiOutlineRight />
         </button>
     </div>  
     )

@@ -27,6 +27,7 @@ export async function getAllKanjiLearnt() {
 }
 
 export async function getKanjiDetails(kanji:string) {
+    console.log("kanji in get kanji details: ", kanji )
     const response = await fetch(`https:kanjiapi.dev/v1/kanji/${kanji}`)
     const data = response.json()
     //setKanjiDetails(data)

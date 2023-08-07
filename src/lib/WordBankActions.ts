@@ -12,9 +12,8 @@ type WordExampleProps = {
 export async function setWordbankWord({written, pronounced, meanings}:WordExampleProps) {
     try{
         const collectionRef = collection(db, 'users', 'user1', 'wordbank')
-        const docRef = doc(collectionRef)
+        const docRef = doc(collectionRef,written)
         await setDoc(docRef, {
-            id: docRef.id,
             written,
             pronounced,
             meanings
@@ -49,3 +48,12 @@ export async function getAllWordbankWords() {
     })
     return data
 } 
+
+export async function clearWordbank() {
+    const collectionRef = collection(db,'users', 'user1', 'wordbank')
+    const snapshot = await getDocs(collectionRef)
+    snapshot.forEach( doc => {
+        deleteDoc(doc.ref)
+    })
+    console.log("complete clearing wordbank!")
+}

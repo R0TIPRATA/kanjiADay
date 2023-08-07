@@ -6,7 +6,7 @@ import KanjiDetail from "../components/KanjiDetail";
 import WordExamples from "../components/WordExamples";
 import DateSelector from "../components/DateSelector";
 import {getAllKanjiLearnt, getRandomKanjiFromRemainingList }from "../lib/UserKanjiDataActions";
-import { getAllWordbankWords } from "../lib/WordBankActions";
+import { clearWordbank, getAllWordbankWords } from "../lib/WordBankActions";
 //import { getAllKanjiLearntSorted } from "./lib/getUserKanjiData";
 import {getDateLastVisited, setDateVisitedDb} from "../lib/UserDetailsActions";
 import { setDate } from "date-fns";
@@ -20,7 +20,7 @@ import addAllKanji from "@/firebase/firestore/addAllKanji";
 //export default function Home({ params }: { params: { kanji?: string } }) {
 
 export default function Home({ searchParams }: { searchParams: { kanji?: string } }) {  
-
+  //clearWordbank();
   console.log("kanjiParam", searchParams)
   return (
     <>

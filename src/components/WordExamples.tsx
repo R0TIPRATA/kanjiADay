@@ -27,6 +27,7 @@ const WordExamples = async ({kanji}:WordExamplesProps) => {
                     written={word.variants[0].written} 
                     pronounced={word.variants[0].pronounced}    
                     meanings={word.meanings[0].glosses.join(", ")}
+                    kanji={kanji}
                    // favoriteInDb={false}
                 />)
             }
