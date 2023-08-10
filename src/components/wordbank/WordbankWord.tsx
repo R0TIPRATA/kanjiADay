@@ -15,6 +15,8 @@ type WordbankWordProps = {
 const WordbankWord = ({word,clickHandlers}:WordbankWordProps) => {
   const [checked,setChecked] = useState(false)
   const [showPopup,setShowPopup] = useState(false)
+  const [checkRemove, setCheckedRemove] = useState(false)
+  
 
   const showRemovePopup = () => {
     setShowPopup(true)
@@ -23,6 +25,7 @@ const WordbankWord = ({word,clickHandlers}:WordbankWordProps) => {
   const removeFromWordbank = () => {
     removeWordbankWord(word.written)
   }
+  
 
 
   const removePopup = () => {

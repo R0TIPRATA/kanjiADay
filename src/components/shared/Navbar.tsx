@@ -24,7 +24,7 @@ const Navbar = () => {
                     <a className="font-medium text-gray-400 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400" href="#">Blog</a>
                 </div>
                 </div> */}
-                <Link href="/wordbank"> Word Bank </Link>
+                <Link className="font-medium text-gray-100 hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400" href="/wordbank"> Word Bank </Link>
             </nav>
 </header>
     );

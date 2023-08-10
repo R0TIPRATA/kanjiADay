@@ -25,11 +25,11 @@ const Popupcard = ({currentWritten}:PopupcardProps) => {
     }
 
     const styles = {
-        card: {background: 'blue', color: 'white', borderRadius: 20
-     },
+        card: {background: 'white', color: 'black', borderRadius: 20},
     }
 
-    const flipCardCss = 'w-800 h-600 flex items-center justify-center'
+    const flipCardCss = 'w-800 h-600 flex items-center justify-center m-4'
+    const frontBackCss = 'w-800 h-600 flex items-center justify-center shadow-xl border-2 border-slate-100'
     const test = {width: '275px', height:'400px'}
 
 
@@ -42,10 +42,10 @@ const Popupcard = ({currentWritten}:PopupcardProps) => {
     const backCard = 
         <div>
             <div className='pronunciation'>
-                pronunciation: {pronunciation}
+                <span className='text-slate-600'>pronunciation: </span><span className='text-sky-500 font-semibold'>{pronunciation}</span>
             </div>
             <div className='meanings'>
-                meanings:  {meaning}
+            <span className='text-slate-600'>meanings: </span><span className='text-sky-500 font-semibold'>{meaning}</span>
             </div>
         </div>
 
@@ -53,8 +53,8 @@ const Popupcard = ({currentWritten}:PopupcardProps) => {
         <ReactFlipCard
             containerCss = {flipCardCss}
             containerStyle={test}
-            frontCss= {flipCardCss}
-            backCss= {flipCardCss}
+            frontCss= {frontBackCss}
+            backCss= {frontBackCss}
             frontStyle={styles.card}
             backStyle={styles.card}
             frontComponent={frontCard}

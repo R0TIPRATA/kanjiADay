@@ -36,7 +36,7 @@ const Wordbank = () => {
       <div className='words flex-col'>
         <WordbankWords getDeck={getDeck} />
       </div>
-        <DeckFooter deck={wordsDeck}  createDeck={createDeck}/>
+        <DeckFooter deck={wordsDeck} createDeck={createDeck}/>
       <DeckPopup wordsDeck={wordsDeck} showPopup={showPopup} removePopup={removePopup}/>
     </div>
   )

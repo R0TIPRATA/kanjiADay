@@ -20,6 +20,7 @@ const WordbankWords =  ({getDeck} : WordbankWordsProps) => {
   //sets removed
   const updateCheckRemoved = (condition:boolean) => {
     setCheckRemoved(condition)
+    getDeck([])
   }
 
   useEffect(()=> {

@@ -28,6 +28,7 @@ const DeckPopup = ({wordsDeck, showPopup, removePopup}:PopupProps) => {
     console.log("words deck", wordsDeck)
     console.log("words deck [0] ", wordsDeck[0])
     console.log("currentWritten ", currentWritten)
+    console.log('current index:', currentIndex)
 
     const closeModal = () => {
         setIsOpen(false)
@@ -38,25 +39,33 @@ const DeckPopup = ({wordsDeck, showPopup, removePopup}:PopupProps) => {
         let newIndex = 0;
         //console.log("current written: ", currentWritten)
         //selector controls
-        if(control === 'prev') newIndex = currentIndex - 1
+
+        if(control === 'prev' && currentIndex > 0) newIndex = currentIndex - 1 //0 - 1
         else newIndex = currentIndex + 1
         
-        console.log("control", control)
-        console.log("prev index", currentIndex)
-        console.log("new index: ", newIndex)
+        // console.log("control", control)
+        // console.log("prev index", currentIndex)
+        // console.log("new index: ", newIndex)
+        // console.log("deck length: ", deckLength)
+        // console.log("disable next => ", disableNext)
+        // console.log("disable prev => ", disablePrev)
 
-        setCurrentIndex(newIndex)
-        
-        //disabling buttons 
-        if(newIndex === 0) setDisablePrev(true)
-        else if (newIndex === deckLength - 1 ) setDisableNext(true)
+        if(newIndex === 0){
+            setDisablePrev(true)
+            if(deckLength===1) setDisableNext(true)
+            else setDisableNext(false)
+        }
+        else if (newIndex === deckLength - 1 ) {
+            setDisableNext(true)
+            setDisablePrev(false)
+        }
         else { 
           setDisableNext(false)
           setDisablePrev(false)
         }  
-        //****display current word*******
-        setCurrentWritten(wordsDeck[newIndex])
 
+        setCurrentIndex(newIndex)
+        setCurrentWritten(wordsDeck[newIndex])
     }
 
     //if array of words > 0, open modal
