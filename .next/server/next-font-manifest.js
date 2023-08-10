@@ -1,1 +1,1 @@
-self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/Users/aliyah/GitHub/kanji-a-day/kanjiADay/src/app/layout\":[\"static/media/2aaf0723e720e8b9-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"
+self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/Users/aliyahjamil/Documents/Github/kanjiADay/src/app/layout\":[\"static/media/2aaf0723e720e8b9-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"

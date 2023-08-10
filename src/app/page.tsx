@@ -2,9 +2,9 @@
 //test add data
 import { useAuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
-import KanjiDetail from "../components/KanjiDetail";
-import WordExamples from "../components/WordExamples";
-import DateSelector from "../components/DateSelector";
+import KanjiDetail from "../components/home/KanjiDetail";
+import WordExamples from "../components/home/WordExamples";
+import DateSelector from "../components/home/DateSelector";
 import {getAllKanjiLearnt, getRandomKanjiFromRemainingList }from "../lib/UserKanjiDataActions";
 import { clearWordbank, getAllWordbankWords } from "../lib/WordBankActions";
 //import { getAllKanjiLearntSorted } from "./lib/getUserKanjiData";
@@ -12,6 +12,8 @@ import {getDateLastVisited, setDateVisitedDb} from "../lib/UserDetailsActions";
 import { setDate } from "date-fns";
 //import { isEqual } from "date-fns";
 import addAllKanji from "@/firebase/firestore/addAllKanji";
+// const lodash = require('lodash');
+
 
 // export interface HomeProps {
 //   kanjiParam: string;
@@ -19,7 +21,7 @@ import addAllKanji from "@/firebase/firestore/addAllKanji";
 
 //export default function Home({ params }: { params: { kanji?: string } }) {
 
-export default function Home({ searchParams }: { searchParams: { kanji?: string } }) {  
+export default function Home({ searchParams }: { searchParams: { kanji?: string } }) {   
   //clearWordbank();
   console.log("kanjiParam", searchParams)
   return (

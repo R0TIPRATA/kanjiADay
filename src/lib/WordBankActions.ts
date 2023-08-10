@@ -44,7 +44,12 @@ export async function getAllWordbankWords() {
     const snapshot = await getDocs(collectionRef)
     const data: any[] = []
     snapshot.forEach( doc => {
-        data.push(doc.data().written)
+        const obj = {
+            written: doc.data().written,
+            pronounced: doc.data().pronounced,
+            meanings: doc.data().meanings
+        }
+        data.push(obj)
     })
     return data
 } 
@@ -56,4 +61,24 @@ export async function clearWordbank() {
         deleteDoc(doc.ref)
     })
     console.log("complete clearing wordbank!")
+}
+
+export async function getWordbankWord(written:string) {
+    const collectionRef = collection(db,'users', 'user1', 'wordbank')
+    const docRef = doc(collectionRef,written)
+    type ResultsType = {
+            meanings: string[],
+            pronounced: string
+    }
+    let result = {
+        meanings: [""],
+        pronounced: ''
+    };
+    try{ 
+        const snapshot = await getDoc(docRef)
+        result = snapshot.data() as ResultsType
+    }catch(e){
+        console.log(e)
+    }
+    return result
 }

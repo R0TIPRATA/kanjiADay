@@ -6,7 +6,7 @@ import { Inter } from 'next/font/google'
 import { useEffect } from 'react'
 import { AuthContextProvider } from '@/context/AuthContext'
 import dynamic from 'next/dynamic'
-import { Dashboard } from '@material-ui/icons'
+//import { Dashboard } from '@material-ui/icons'
 
 const lodash = require('lodash')
 const inter = Inter({ subsets: ['latin'] })
@@ -16,7 +16,9 @@ const inter = Inter({ subsets: ['latin'] })
 //   description: 'Learn a new kanji everyday',
 // }
 
-const Navbar = dynamic(() => import("../components/Navbar"), {
+
+
+const Navbar = dynamic(() => import("../components/shared/Navbar"), {
   ssr: false,
 });
 

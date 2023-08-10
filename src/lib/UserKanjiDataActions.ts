@@ -57,17 +57,6 @@ export async function getRandomKanjiFromRemainingList(){
        const snapshot = await getCountFromServer(collectionRef)
        const count = snapshot.data().count
        const randIndex = Math.floor(Math.random() * count);
-    //    console.log("rand index", randIndex)
-    //    const q = query(collectionRef, where("id","==",randIndex))
-    //    console.log("test q",q)
-    //    const querySnapshot =  await getDocs(q);
-    //    console.log('querySnapshot length', querySnapshot.size)
-    //    querySnapshot.forEach((doc) => {
-    //      // doc.data() is never undefined for query doc snapshots
-    //      console.log(doc.id, " => ", doc.data().kanjiCharacter);
-    //      data = doc.data().kanjiCharacter
-    //      saveDoc = doc
-    //    });
 
        const q1 = query(collectionRef, where("id", ">=", randIndex), limit(1))
        const ss = await getDocs(q1)

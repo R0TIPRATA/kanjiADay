@@ -1,1 +1,1 @@
-self.__RSC_SERVER_MANIFEST="{\n  \"node\": {\n    \"245a2f476cae714d4efd94c9960b8cb1f78fff2d\": {\n      \"workers\": {\n        \"app/page\": \"(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Faliyah%2FGitHub%2Fkanji-a-day%2FkanjiADay%2Fsrc%2Fcomponents%2FWordExample.tsx%22%2C%5B%22%24%24ACTION_1%22%5D%5D%5D&__client_imported__=!\"\n      },\n      \"layer\": {\n        \"app/page\": \"rsc\"\n      }\n    }\n  },\n  \"edge\": {}\n}"
+self.__RSC_SERVER_MANIFEST="{\n  \"node\": {},\n  \"edge\": {}\n}"
