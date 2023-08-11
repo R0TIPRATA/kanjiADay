@@ -20,3 +20,14 @@ Follow these steps to get the Kanji Learning Application up and running on your 
 
    ```bash
    git clone https://github.com/R0TIPRATA/kanjiADay.git
+
+2. **Install the necessary dependencies:** 
+
+   ```bash
+   npm install
+
+3. **Run the application:** 
+
+   ```bash
+   npm run dev
+   
