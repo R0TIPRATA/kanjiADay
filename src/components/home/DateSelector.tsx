@@ -32,11 +32,11 @@ const DateSelector = () => {
         router.push(newPathName)
     };
 
-    const today = new Date(Date.now())
+    const tday = new Date(2023, 7, 9)//new Date(Date.now()) //new Date(2023, 7, 12)
     const [currentIndex, setCurrentIndex] = useState(0) 
     const [dateLength, setDateLength] = useState(0)
     const [dateLastVisited, setDateLastVisited] = useState(new Date())
-    const [selectedDate, setSelectedDate] = useState(today.toDateString())
+    const [selectedDate, setSelectedDate] = useState(tday.toDateString())
     const [selectedKanji, setSelectedKanji] = useState("")
     const [kanjiList, setKanjiList] = useState<KanjiCharacter[]>([])
     const [disableNext,setDisableNext] = useState(true)
@@ -48,6 +48,7 @@ const DateSelector = () => {
     ,[])
 
     useEffect( () => {
+        console.log('kanji list length', kanjiList)
         if(kanjiList.length > 0){
             setSelectedKanji(kanjiList[0].kanji)
             updateParams(kanjiList[0].kanji)
@@ -60,15 +61,16 @@ const DateSelector = () => {
         if (error) {
           return console.log(error)
         }
-        // console.log("data.toDateString => ", data.toDateString());
-        // console.log("today.toDateString => ", today.toDateString());
-        // console.log("Result => ", data.toDateString() === today.toDateString())
-        if(data.toDateString() === today.toDateString()){  //if date last visited was today
-          setDateLastVisited(today) 
+        console.log("data.toDateString => ", data.toDateString());
+        console.log("today.toDateString => ", tday.toDateString());
+        console.log("Result => ", data.toDateString() === tday.toDateString())
+        if(data.toDateString() === tday.toDateString()){  //if date last visited was today
+          setDateLastVisited(tday) 
         }else{
-          setDateVisitedDb(today)
+          setDateVisitedDb(tday)
           setDateLastVisited(data)
           generateNewKanji()
+          setSelectedDate(tday.toDateString())
 
         }
         fetchKanjiLearnt()
@@ -76,6 +78,7 @@ const DateSelector = () => {
 
     const fetchKanjiLearnt = async() => {
         const {data,error} = await getAllKanjiLearnt()
+        console.log('get all kanji learnt data')
         setKanjiList(data);
         if (error) {
           return console.log(error)
@@ -85,15 +88,15 @@ const DateSelector = () => {
     }
 
     const generateNewKanji = async() =>{
-        const {data,error} = await getRandomKanjiFromRemainingList()
+        const {data,error} = await getRandomKanjiFromRemainingList(tday)
         setSelectedKanji(data)
+        console.log('new kanji generated => ' + data)
         updateParams(data)
         //setTriggerKanjiReload(!triggerKanjiReload)
         fetchKanjiLearnt()
         if (error) {
           return console.log(error)
         }
-        console.log('new kanji generated => ' + data)
     }
 
     const changeDate = (control: string) => {

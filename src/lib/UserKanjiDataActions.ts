@@ -14,7 +14,7 @@ export async function getAllKanjiLearnt() {
         querySnapshot.forEach( doc => {
             const kanjiLearnt = {
                 id: doc.id,
-                kanji : doc.data()['kanjiLearnt'],
+                kanji : doc.data()['kanjiCharacter'],
                 dateLearnt : doc.data()['dateLearnt']
             }
             data.push(kanjiLearnt)
@@ -41,14 +41,14 @@ export async function getWordsWithKanji(kanji:string) {
     console.log("kanji value: ", kanji)
     const response = await fetch(`https://kanjiapi.dev/v1/words/${kanji}`)
     const data = response.json()
-    //setKanjiDetails(data)
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
     return data
 }    
 
-export async function getRandomKanjiFromRemainingList(){
+export async function getRandomKanjiFromRemainingList(dateLearnt:Date){
+    console.log('get random kanji')
     let data: string = "";
     let error = "";
     console.log("line 49")
@@ -79,8 +79,8 @@ export async function getRandomKanjiFromRemainingList(){
         await deleteDoc(doc(db, 'users', 'user1', 'remainingKanji', docRefId))
         await setDoc(doc(db, 'users', 'user1', 'learnedKanji', docRefId), {
             id: docRefId,
-            kanjiLearnt: data,
-            dateLearnt: new Date(Date.now())
+            kanjiCharacter: data,
+            dateLearnt: dateLearnt
         });
 
         console.log( "data for get rand kanji => ", data)

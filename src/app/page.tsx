@@ -23,6 +23,7 @@ import addAllKanji from "@/firebase/firestore/addAllKanji";
 
 export default function Home({ searchParams }: { searchParams: { kanji?: string } }) {   
   //clearWordbank();
+  addAllKanji()
   console.log("kanjiParam", searchParams)
   return (
     <>
